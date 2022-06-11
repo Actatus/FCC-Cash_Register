@@ -8,4 +8,4 @@ function checkCashRegister(price, cash, cid) {
 
 
 
-export.modules = checkCashRegister;
+module.exports = checkCashRegister;
