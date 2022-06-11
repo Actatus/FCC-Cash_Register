@@ -1,0 +1,14 @@
+{
+  "name": "fcc-cash-register",
+  "devDependencies": {
+    "jest": "^28.1.1",
+    "jest-environment-jsdom": "^28.1.1"
+  },
+  "jest": {
+    "verbose": true,
+    "testEnvironment": "jsdom"
+  },
+  "scripts": {
+    "test": "jest"
+  }
+}
