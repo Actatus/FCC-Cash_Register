@@ -5,3 +5,7 @@ function checkCashRegister(price, cash, cid) {
   let change;
   return change;
 }
+
+
+
+export.modules = checkCashRegister;
