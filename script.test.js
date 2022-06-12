@@ -7,13 +7,13 @@ const variedRegister = [["PENNY", 1.01], ["NICKEL", 1.05], ["DIME", .7], ["QUART
 
 
 test("Insufficient Funds", () => {
-  expect(checkCashRegister(20, 50, emptyRegister)).toBe({status: 'INSUFFICIENT_FUNDS', change: []});
+  expect(checkCashRegister(20, 50, emptyRegister)).toMatchObject({change: [], status: 'INSUFFICIENT_FUNDS'});
 });
 
 test("Exact Change empty register", () => {
-  expect(checkCashRegister(20, 20, emptyRegister)).toBe({status: "Closed", change: emptyRegister});
+  expect(checkCashRegister(20, 20, emptyRegister)).toMatchObject({change: emptyRegister, status: "Closed"});
 });
 
 test("50c back", () => {
-  expect(checkCashRegister(20.5, 21, variedRegister)).toBe({status: "Open", change: [["Quarter", .5]]});
+  expect(checkCashRegister(20.5, 21, variedRegister)).toMatchObject({change: [["Quarter", .5]], status: "Open"});
 });
