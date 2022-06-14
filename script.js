@@ -13,6 +13,18 @@ const emptyDrawer = [
   ["ONE HUNDRED", 0]
 ];
 
+const currencyValues = {
+  "PENNY": .01,
+  "NICKEL": .05,
+  "DIME": .10,
+  "QUARTER": .25,
+  "ONE": 1,
+  "FIVE": 5,
+  "TEN": 10,
+  "TWENTY": 20,
+  "ONE HUNDRED": 100
+}
+
 
 function checkCashRegister(price, cash, cid = emptyDrawer) {
   let registerStatus = {
@@ -41,6 +53,10 @@ function checkCashRegister(price, cash, cid = emptyDrawer) {
       total += cid[i][1];
     }
     return total;
+  }
+
+  function registerFunction(balance, cid){
+    
   }
 
   checkPriceCash(price, cash);
