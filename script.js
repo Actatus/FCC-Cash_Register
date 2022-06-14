@@ -21,15 +21,26 @@ function checkCashRegister(price, cash, cid = emptyDrawer) {
   };
 
   function checkPriceCash(price, cash){
-    let balance = price-cash;
+    let balance = cash-price;
+
     if (balance == 0){
       registerStatus.status = "Closed";
       registerStatus.change = cid;
-    } else if (balance < 0){
+    } else if (balance < 0 || balance > getDrawerTotal(cid)){
       registerStatus.status = "INSUFFICIENT_FUNDS";
+      console.log(registerStatus.status + " balance: " + balance + "getDrawerTotal: " + getDrawerTotal(cid));
     } else {
       console.log("Drawer_Operation");
     }
+  }
+
+  function getDrawerTotal(cid){
+    let total = 0;
+
+    for (i=0; i < cid.length; i++){
+      total += cid[i][1];
+    }
+    return total;
   }
 
   checkPriceCash(price, cash);
