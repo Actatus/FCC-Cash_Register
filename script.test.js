@@ -23,7 +23,7 @@ test("50c back", () => {
 });
 
 test("$20.50 back", () =>{
-  expect(checkCashRegister(10, 35.50, variedRegister)).toMatchObject({change: [["TWENTY", 20], ["QUARTER", .5]]});
+  expect(checkCashRegister(10, 30.50, variedRegister)).toMatchObject({change: [["TWENTY", 20], ["QUARTER", .5]]});
 });
 
 
