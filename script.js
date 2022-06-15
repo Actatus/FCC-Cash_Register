@@ -43,6 +43,8 @@ function checkCashRegister(price, cash, cid = emptyDrawer) {
     } else {
       registerStatus.status =  "Open";
       let cashBack = registerFunction(balance, cid);
+      console.log("cashBack-46: "+ cashBack);
+      registerStatus.change = cashBack;
       
     }
   }
@@ -59,13 +61,15 @@ function checkCashRegister(price, cash, cid = emptyDrawer) {
   function registerFunction(balance, cid){
     let totalPrice = balance;
     let cashBack = [];
+
     for (i = cid.length - 1; i >= 0; i--){
       let maxDivisions = Math.floor(totalPrice/currencyValues[cid[i][0]]);
       let returnedChangeAfterDivisions = maxDivisions * currencyValues[cid[i][0]];
+
       if (maxDivisions > 0 && totalPrice > 0){
         if (returnedChangeAfterDivisions <= cid[i][1]){
           totalPrice = totalPrice - returnedChangeAfterDivisions;
-          cashBack = cashBack.concat(cid[i][0], returnedChangeAfterDivisions);
+          cashBack.push([cid[i][0], returnedChangeAfterDivisions]);
         }
       }
 
@@ -75,7 +79,7 @@ function checkCashRegister(price, cash, cid = emptyDrawer) {
   }
   
   checkPriceCash(price, cash);
-  // console.log("registerStatus: " + registerStatus.status + " ," + registerFunction.change);
+  console.log(registerStatus.change);
   return registerStatus;
 }
 
