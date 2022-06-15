@@ -42,8 +42,7 @@ function checkCashRegister(price, cash, cid = emptyDrawer) {
       registerStatus.status = "INSUFFICIENT_FUNDS";
     } else {
       registerStatus.status =  "Open";
-      let cashBack = registerFunction(balance, cid);
-      registerStatus.change = cashBack;
+      registerStatus.change = registerFunction(balance, cid);
       
     }
   }
