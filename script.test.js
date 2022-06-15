@@ -11,19 +11,23 @@ test("Insufficient Funds", () => {
 });
 
 test("Exact Change empty register", () => {
-  expect(checkCashRegister(20, 20, emptyRegister)).toMatchObject({change: emptyRegister, status: "Closed"});
+  expect(checkCashRegister(20, 20, emptyRegister)).toMatchObject({change: emptyRegister, status: "CLOSED"});
 });
 
 test("Exact change, varied register", () =>{
-  expect(checkCashRegister(20, 20, variedRegister)).toMatchObject({change: variedRegister, status: "Closed"});
+  expect(checkCashRegister(20, 20, variedRegister)).toMatchObject({change: variedRegister, status: "CLOSED"});
 });
 
 test("50c back", () => {
-  expect(checkCashRegister(20.5, 21, variedRegister)).toMatchObject({change: [["QUARTER", .5]], status: "Open"});
+  expect(checkCashRegister(20.5, 21, variedRegister)).toMatchObject({change: [["QUARTER", .5]], status: "OPEN"});
 });
 
 test("$20.50 back", () =>{
-  expect(checkCashRegister(10, 30.50, variedRegister)).toMatchObject({change: [["TWENTY", 20], ["QUARTER", .5]], status: "Open"});
+  expect(checkCashRegister(10, 30.50, variedRegister)).toMatchObject({change: [["TWENTY", 20], ["QUARTER", .5]], status: "OPEN"});
 });
 
+test("Open, change: 50c back", () =>{
+  expect(checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]])
+    .toMatchObject({change: [["QUARTER", 0.5]], status: "OPEN"});
+});
 
