@@ -43,7 +43,6 @@ function checkCashRegister(price, cash, cid = emptyDrawer) {
     } else {
       registerStatus.status =  "Open";
       let cashBack = registerFunction(balance, cid);
-      console.log("cashBack-46: "+ cashBack);
       registerStatus.change = cashBack;
       
     }
@@ -79,7 +78,6 @@ function checkCashRegister(price, cash, cid = emptyDrawer) {
   }
   
   checkPriceCash(price, cash);
-  console.log(registerStatus.change);
   return registerStatus;
 }
 
