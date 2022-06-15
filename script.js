@@ -40,9 +40,10 @@ function checkCashRegister(price, cash, cid = emptyDrawer) {
       registerStatus.change = cid;
     } else if (balance < 0 || balance > getDrawerTotal(cid)){
       registerStatus.status = "INSUFFICIENT_FUNDS";
-      console.log(registerStatus.status + " balance: " + balance + "getDrawerTotal: " + getDrawerTotal(cid));
     } else {
-      console.log("Drawer_Operation");
+      registerStatus.status =  "Open";
+      let cashBack = registerFunction(balance, cid);
+      
     }
   }
 
@@ -56,10 +57,25 @@ function checkCashRegister(price, cash, cid = emptyDrawer) {
   }
 
   function registerFunction(balance, cid){
-    
-  }
+    let totalPrice = balance;
+    let cashBack = [];
+    for (i = cid.length - 1; i >= 0; i--){
+      let maxDivisions = Math.floor(totalPrice/currencyValues[cid[i][0]]);
+      let returnedChangeAfterDivisions = maxDivisions * currencyValues[cid[i][0]];
+      if (maxDivisions > 0 && totalPrice > 0){
+        if (returnedChangeAfterDivisions <= cid[i][1]){
+          totalPrice = totalPrice - returnedChangeAfterDivisions;
+          cashBack = cashBack.concat(cid[i][0], returnedChangeAfterDivisions);
+        }
+      }
 
+    }
+    
+    return cashBack;
+  }
+  
   checkPriceCash(price, cash);
+  // console.log("registerStatus: " + registerStatus.status + " ," + registerFunction.change);
   return registerStatus;
 }
 
