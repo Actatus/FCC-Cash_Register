@@ -28,7 +28,7 @@ const currencyValues = {
 
 function checkCashRegister(price, cash, cid = emptyDrawer) {
   let registerStatus = {
-    'status': "Closed",
+    'status': "CLOSED",
     'change': []
   };
 
@@ -36,12 +36,12 @@ function checkCashRegister(price, cash, cid = emptyDrawer) {
     let balance = cash-price;
 
     if (balance == 0){
-      registerStatus.status = "Closed";
+      registerStatus.status = "CLOSED";
       registerStatus.change = cid;
     } else if (balance < 0 || balance > getDrawerTotal(cid)){
       registerStatus.status = "INSUFFICIENT_FUNDS";
     } else {
-      registerStatus.status =  "Open";
+      registerStatus.status =  "OPEN";
       registerStatus.change = registerFunction(balance, cid);
       
     }
