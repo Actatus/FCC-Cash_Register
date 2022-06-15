@@ -50,7 +50,7 @@ function checkCashRegister(price, cash, cid = emptyDrawer) {
   function getDrawerTotal(cid){
     let total = 0;
 
-    for (i=0; i < cid.length; i++){
+    for (let i = 0; i < cid.length; i++){
       total += cid[i][1];
     }
     return total;
@@ -60,7 +60,7 @@ function checkCashRegister(price, cash, cid = emptyDrawer) {
     let totalPrice = balance;
     let cashBack = [];
 
-    for (i = cid.length - 1; i >= 0; i--){
+    for (let i = cid.length - 1; i >= 0; i--){
       let maxDivisions = Math.floor(totalPrice/currencyValues[cid[i][0]]);
       let returnedChangeAfterDivisions = maxDivisions * currencyValues[cid[i][0]];
 
