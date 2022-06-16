@@ -59,17 +59,26 @@ function checkCashRegister(price, cash, cid = emptyDrawer) {
     let cashBack = [];
 
     for (let i = cid.length - 1; i >= 0; i--){
-      let maxDivisions = Math.floor(totalPrice/currencyValues[cid[i][0]]);
+      let maxDivisions = Math.floor(totalPrice.toFixed(2)/currencyValues[cid[i][0]]);
       let returnedChangeAfterDivisions = maxDivisions * currencyValues[cid[i][0]];
 
       if (maxDivisions > 0 && totalPrice > 0){
-        if (returnedChangeAfterDivisions <= cid[i][1]){
-          totalPrice = totalPrice - returnedChangeAfterDivisions;
-          cashBack.push([cid[i][0], returnedChangeAfterDivisions]);
-        }
-      }
-    }
 
+        if (returnedChangeAfterDivisions <= cid[i][1]){
+          console.log("balance: " + balance + " totalPrice: " + totalPrice.toFixed(2) + "cid[i]" + cid[i][1]);
+          totalPrice = totalPrice.toFixed(2) - returnedChangeAfterDivisions;
+          cashBack.push([cid[i][0], returnedChangeAfterDivisions]);
+        } else if (returnedChangeAfterDivisions > cid[i][1] && cid[i][1] > 0) {
+          totalPrice = totalPrice.toFixed(2) - cid[i][1];
+          cashBack.push([cid[i][0], cid[i][1]]);
+        }
+
+      }
+      // console.log("maxDiv: " + maxDivisions + "  ======" + totalPrice/currencyValues[cid[i][0]]);
+      // console.log("balance: " + balance + "total: " + totalPrice.toFixed(2) + "CashBack: " + cashBack);
+    }
+   
+    console.log(totalPrice);
     if (totalPrice > 0){
       registerStatus.status = "INSUFFICIENT_FUNDS";
       registerStatus.change = [];
