@@ -41,9 +41,7 @@ function checkCashRegister(price, cash, cid = emptyDrawer) {
     } else if (balance < 0 || balance > getDrawerTotal(cid)){
       registerStatus.status = "INSUFFICIENT_FUNDS";
     } else {
-      registerStatus.status =  "OPEN";
-      registerStatus.change = registerFunction(balance, cid);
-      
+      registerFunction(balance, cid);
     }
   }
 
@@ -70,10 +68,16 @@ function checkCashRegister(price, cash, cid = emptyDrawer) {
           cashBack.push([cid[i][0], returnedChangeAfterDivisions]);
         }
       }
+    }
 
+    if (totalPrice > 0){
+      registerStatus.status = "INSUFFICIENT_FUNDS";
+      registerStatus.change = [];
+    } else {
+      registerStatus.status = "OPEN";
+      registerStatus.change = cashBack;
     }
     
-    return cashBack;
   }
   
   checkPriceCash(price, cash);
