@@ -65,7 +65,6 @@ function checkCashRegister(price, cash, cid = emptyDrawer) {
       if (maxDivisions > 0 && totalPrice > 0){
 
         if (returnedChangeAfterDivisions <= cid[i][1]){
-          console.log("balance: " + balance + " totalPrice: " + totalPrice.toFixed(2) + "cid[i]" + cid[i][1]);
           totalPrice = totalPrice.toFixed(2) - returnedChangeAfterDivisions;
           cashBack.push([cid[i][0], returnedChangeAfterDivisions]);
         } else if (returnedChangeAfterDivisions > cid[i][1] && cid[i][1] > 0) {
@@ -74,11 +73,8 @@ function checkCashRegister(price, cash, cid = emptyDrawer) {
         }
 
       }
-      // console.log("maxDiv: " + maxDivisions + "  ======" + totalPrice/currencyValues[cid[i][0]]);
-      // console.log("balance: " + balance + "total: " + totalPrice.toFixed(2) + "CashBack: " + cashBack);
     }
    
-    console.log(totalPrice);
     if (totalPrice > 0){
       registerStatus.status = "INSUFFICIENT_FUNDS";
       registerStatus.change = [];
