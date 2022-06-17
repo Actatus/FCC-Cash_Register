@@ -35,7 +35,7 @@ function checkCashRegister(price, cash, cid = emptyDrawer) {
   function checkPriceCash(price, cash){
     let balance = cash-price;
 
-    if (balance == 0){
+    if (balance == 0 || balance == getDrawerTotal(cid)){
       registerStatus.status = "CLOSED";
       registerStatus.change = cid;
     } else if (balance < 0 || balance > getDrawerTotal(cid)){
