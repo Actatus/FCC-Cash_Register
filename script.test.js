@@ -53,3 +53,16 @@ test("Large cashback", () =>{
       status: "OPEN"
     });
 });
+
+
+//checkCashRegister(19.5, 20, [["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], 
+//["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]) should return {status: "CLOSED", change: 
+//[["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0],
+// ["TWENTY", 0], ["ONE HUNDRED", 0]]}.
+
+test("Expect exact change FCC Final Test", () => {
+  expect(checkCashRegister(19.5, 20, [["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0],
+    ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]])).toMatchObject({
+      change: [["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0],
+        ["TWENTY", 0], ["ONE HUNDRED", 0]], status: "CLOSED"});
+});
